@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TP9</string>
+    <string name="create">onCreate</string>
+    <string name="Pause">onPause</string>
+    <string name="Resume">onResume</string>
+    <string name="Stop">onStop</string>
+    <string name="Destroy">onDestroy</string>
+    <string name="Restore">onRestoreInstanceState</string>
+    <string name="Save">onSaveInstanceState</string>
+
 </resources>
