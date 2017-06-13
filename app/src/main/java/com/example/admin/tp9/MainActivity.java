@@ -1,6 +1,7 @@
 package com.example.admin.tp9;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ public class MainActivity extends Traceur{
 
     public static final String PROGRESS = "progress";
     int index = 0;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,8 @@ public class MainActivity extends Traceur{
         setContentView(R.layout.activity_main);
         final Button bouton1 = (Button) findViewById(R.id.button1);
         final TextView text = (TextView) findViewById(R.id.compteur);
+
+        ChargerParametres();
 
         bouton1.setOnClickListener(new View.OnClickListener() {
 
@@ -33,6 +37,31 @@ public class MainActivity extends Traceur{
                 //startActivity(intent);
             }
         });
+    }
+
+    private void ChargerParametres(){
+        sharedPreferences = getSharedPreferences("TP9",MODE_PRIVATE);
+        if(sharedPreferences.contains(PROGRESS)){
+            String progress = sharedPreferences.getString(PROGRESS,"");
+            index=Integer.parseInt(progress);
+            TextView text =(TextView) findViewById(R.id.compteur);
+            text.setText(progress);
+
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sauvegarderPreferences();
+    }
+
+    private void sauvegarderPreferences(){
+        sharedPreferences = getSharedPreferences("TP9",MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        TextView text =(TextView)findViewById(R.id.compteur);
+        edit.putString(PROGRESS,text.getText().toString());
+        edit.commit();
     }
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
