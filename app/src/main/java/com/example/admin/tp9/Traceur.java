@@ -14,7 +14,7 @@ public abstract class Traceur extends AppCompatActivity {
     Toast toast;
     @Override
     protected void onCreate (Bundle saveInstanceState) {
-        super.onCreate();
+        super.onCreate(saveInstanceState);
         toast = Toast.makeText(this,R.string.create,Toast.LENGTH_LONG);
         toast.show();
     }
@@ -27,7 +27,7 @@ public abstract class Traceur extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        super;onResume();
+        super.onResume();
         toast = Toast.makeText(this,R.string.Resume,Toast.LENGTH_LONG);
         toast.show();
     }
@@ -55,7 +55,7 @@ public abstract class Traceur extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle onState) {
-         super.onSaveInstanceState();
+         super.onSaveInstanceState(onState);
         toast = Toast.makeText(this,R.string.Save,Toast.LENGTH_LONG);
         toast.show();
     }
